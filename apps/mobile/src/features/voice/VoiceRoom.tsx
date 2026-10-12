@@ -121,14 +121,14 @@ export function VoiceRoom({ serverUrl, token, onLeave }: VoiceRoomProps) {
 }
 
 const styles = StyleSheet.create({
-  roomPanel: { backgroundColor: colors.accentDark, borderRadius: 14, gap: 12, padding: 14 },
+  roomPanel: { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 10, borderWidth: 1, gap: 12, padding: 14 },
   status: { color: colors.text, fontSize: 13, fontWeight: "600" },
   participants: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
-  participant: { backgroundColor: colors.surfaceRaised, borderRadius: 9, color: colors.text, fontSize: 12, paddingHorizontal: 9, paddingVertical: 6 },
+  participant: { backgroundColor: colors.surfaceRaised, borderRadius: 6, color: colors.text, fontSize: 12, paddingHorizontal: 9, paddingVertical: 6 },
   controls: { flexDirection: "row", gap: 8 },
-  controlButton: { backgroundColor: colors.surfaceRaised, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10 },
+  controlButton: { backgroundColor: colors.surfaceRaised, borderRadius: 7, paddingHorizontal: 12, paddingVertical: 10 },
   controlText: { color: colors.text, fontSize: 12, fontWeight: "700" },
-  leaveButton: { backgroundColor: colors.danger },
+  leaveButton: { backgroundColor: colors.danger, borderRadius: 7 },
   leaveText: { color: colors.background, fontSize: 12, fontWeight: "700" },
   error: { color: colors.danger, fontSize: 13, lineHeight: 19 },
 });

@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
   emptyText: { color: colors.muted, fontSize: 13, lineHeight: 20, marginTop: 8, textAlign: "center" },
   row: { alignItems: "flex-start", marginVertical: 5 },
   ownRow: { alignItems: "flex-end" },
-  bubble: { backgroundColor: colors.surface, borderRadius: 16, maxWidth: "84%", paddingHorizontal: 14, paddingVertical: 10 },
-  ownBubble: { backgroundColor: colors.accentDark },
+  bubble: { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 10, borderWidth: 1, maxWidth: "84%", paddingHorizontal: 14, paddingVertical: 10 },
+  ownBubble: { backgroundColor: colors.accentDark, borderColor: colors.accentDark },
   sender: { color: colors.accent, fontSize: 11, fontWeight: "700", marginBottom: 4 },
   message: { color: colors.text, fontSize: 15, lineHeight: 21 },
   time: { color: colors.muted, fontSize: 10, marginTop: 5, textAlign: "right" },
-  ownTime: { color: "#B6D6C8" },
+  ownTime: { color: colors.accent },
 });

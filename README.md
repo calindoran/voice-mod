@@ -61,13 +61,42 @@ npm run dev:web
 
 Open the URL printed by Expo, usually `http://localhost:8081`, and allow microphone access when prompted. The browser can use `127.0.0.1` for the API and local LiveKit. Microphone access requires a secure browser context; localhost qualifies. For a physical Android device, put `EXPO_PUBLIC_API_URL=http://<LAN_IP>:8000` in `apps/mobile/.env.local`, and use the same LAN IP for `LIVEKIT_URL` and `LIVEKIT_NODE_IP` in the repository-root `.env`. Keep the phone and computer on the same Wi-Fi network and allow TCP ports `8000`, `8081`, `7880`, `7881` and UDP port `7882` through the host firewall.
 
-The mobile app uses native WebRTC modules and therefore does not run in Expo Go. Sign in to EAS, build and install the Android development client, then start Metro from the mobile app directory so its QR code uses LAN networking:
+The mobile app uses native WebRTC modules and therefore does not run in Expo Go. Build and install a custom development client using either EAS cloud builds or local builds. EAS requires an Expo account; local builds require the platform toolchain. Run these commands from the repository root:
 
 ```sh
+# EAS cloud builds
 npx eas-cli build --profile development --platform android
+npx eas-cli build --profile development --platform ios
+
+# Local builds (Android Studio/SDK and JDK for Android; Xcode for iOS)
+npm run build:local:android
+npm run build:local:ios
+```
+
+Android Gradle builds need Java 17 and the Android SDK. Android Studio's bundled JDK may be newer than the version supported by native React Native build tools. Install JDK 17 (for example, with Homebrew) and export it along with the default SDK directory in the build terminal:
+
+```sh
+brew install --cask temurin@17
+export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
+export PATH="$JAVA_HOME/bin:$PATH"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+java -version
+adb version
+npm run build:local:android
+```
+
+If Gradle reports a missing SDK package, open Android Studio's **SDK Manager** and install Android SDK Platform 36 and NDK (Side by side) `27.1.12297006`; these match the versions requested by this app's Android build. Build Tools 36.0.0 and Platform-Tools should also be installed. Put the exports in `~/.zprofile` if your IDE task starts a fresh login shell, then restart the IDE.
+
+The local build commands install the app on a connected device or launch a simulator, and start Metro. For later sessions, start Metro without rebuilding from the mobile app directory:
+
+```sh
 cd apps/mobile
 npx expo start --dev-client --lan
 ```
+
+For a physical Android device, enable USB debugging for a local build. Installing a local iOS device build also requires Xcode signing to be configured; the iOS simulator does not require device signing.
 
 The Expo config plugins and microphone permissions are already configured. For a public deployment, use a domain with TLS/WSS, configure LiveKit's public IP and firewall/UDP range, replace the development API key and secret, and provide enough compute and bandwidth. Self-hosting avoids LiveKit Cloud usage fees, but hosting and network transfer can still cost money.
 

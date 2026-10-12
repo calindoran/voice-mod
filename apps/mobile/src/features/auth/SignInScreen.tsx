@@ -79,11 +79,11 @@ export function SignInScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
-  content: { flexGrow: 1, justifyContent: "center", paddingHorizontal: 28, paddingVertical: 40 },
+  content: { alignSelf: "center", flexGrow: 1, justifyContent: "center", maxWidth: 480, paddingHorizontal: 28, paddingVertical: 40, width: "100%" },
   eyebrow: { color: colors.accent, fontSize: 11, fontWeight: "700", letterSpacing: 1.6 },
   title: { color: colors.text, fontSize: 36, fontWeight: "700", letterSpacing: -1.2, lineHeight: 42, marginTop: 14 },
   subtitle: { color: colors.muted, fontSize: 15, lineHeight: 23, marginTop: 12, maxWidth: 340 },
-  form: { marginTop: 34 },
+  form: { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 12, borderWidth: 1, marginTop: 30, padding: 18 },
   error: { color: colors.danger, fontSize: 13, lineHeight: 19, marginTop: 14 },
   submit: { marginTop: 24 },
   footnote: { color: colors.muted, fontSize: 12, textAlign: "center", marginTop: 14 },

@@ -11,9 +11,9 @@ export function BrandMark() {
 
 const styles = StyleSheet.create({
   mark: {
-    width: 54,
-    height: 54,
-    borderRadius: 18,
+    width: 48,
+    height: 48,
+    borderRadius: 12,
     backgroundColor: colors.accent,
     alignItems: "center",
     justifyContent: "center",

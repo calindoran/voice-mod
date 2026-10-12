@@ -46,9 +46,9 @@ export function MessageComposer({ isConnected, onSend }: MessageComposerProps) {
 }
 
 const styles = StyleSheet.create({
-  composer: { alignItems: "flex-end", backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 16, borderWidth: 1, flexDirection: "row", gap: 10, marginHorizontal: 16, padding: 8 },
+  composer: { alignItems: "flex-end", backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 10, borderWidth: 1, flexDirection: "row", gap: 10, marginHorizontal: 16, padding: 8 },
   input: { color: colors.text, flex: 1, fontSize: 15, maxHeight: 100, minHeight: 40, paddingHorizontal: 8, paddingVertical: 9 },
-  sendButton: { alignItems: "center", backgroundColor: colors.accent, borderRadius: 12, height: 40, justifyContent: "center", width: 40 },
+  sendButton: { alignItems: "center", backgroundColor: colors.accent, borderRadius: 8, height: 40, justifyContent: "center", width: 40 },
   sendLabel: { color: colors.background, fontSize: 24, fontWeight: "700", lineHeight: 27 },
   disabled: { opacity: 0.45 },
   pressed: { opacity: 0.8 },

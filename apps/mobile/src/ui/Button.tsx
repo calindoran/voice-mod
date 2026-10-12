@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: colors.accent,
-    borderRadius: 12,
+    borderRadius: 8,
     justifyContent: "center",
-    minHeight: 52,
+    minHeight: 48,
     paddingHorizontal: 16,
   },
-  title: { color: colors.background, fontSize: 15, fontWeight: "700" },
+  title: { color: colors.background, fontSize: 14, fontWeight: "700", letterSpacing: 0.15 },
   disabled: { opacity: 0.45 },
   pressed: { opacity: 0.8 },
 });
