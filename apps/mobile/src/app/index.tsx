@@ -4,6 +4,6 @@ import { useSession } from "../features/auth/session";
 
 export default function SignInRoute() {
   const { session } = useSession();
-  if (session) return <Redirect href="/chat" />;
+  if (session) return <Redirect href="/servers" />;
   return <SignInScreen />;
 }

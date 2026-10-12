@@ -25,3 +25,8 @@ export async function requestJson<T>(
   }
   return payload;
 }
+
+export async function requestVoid(path: string, init: RequestInit): Promise<void> {
+  const response = await expoFetch(`${API_BASE_URL}${path}`, init);
+  if (!response.ok) throw new ApiError(response.status);
+}

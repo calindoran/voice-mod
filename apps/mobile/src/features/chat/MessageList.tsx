@@ -25,7 +25,7 @@ export function MessageList({ messages, currentUserId }: MessageListProps) {
         <View style={styles.empty}>
           <Text style={styles.icon}>✳</Text>
           <Text style={styles.emptyTitle}>A fresh conversation</Text>
-          <Text style={styles.emptyText}>Your messages will appear here for everyone in the room.</Text>
+          <Text style={styles.emptyText}>Your messages will appear here for members of this server.</Text>
         </View>
       ) : (
         messages.map((message) => {

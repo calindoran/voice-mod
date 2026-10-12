@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -19,6 +20,10 @@ class Settings(BaseSettings):
 
     app_name: str = "Voice Mod API"
     app_version: str = "0.3.0"
+    app_environment: Literal["development", "production"] = Field(
+        default="development",
+        validation_alias="APP_ENV",
+    )
     allowed_users: list[Account] = Field(
         default_factory=list,
         validation_alias="ALLOWED_USERS_JSON",
@@ -27,6 +32,17 @@ class Settings(BaseSettings):
         default="http://localhost:8081,http://127.0.0.1:8081",
         validation_alias="CORS_ORIGINS",
     )
+    database_path: Path = Field(
+        default=REPOSITORY_ROOT / "apps" / "api" / "data" / "voice-mod.sqlite3",
+        validation_alias="DATABASE_PATH",
+    )
+    user_id_secret: str = Field(
+        default="voice-mod-local-user-id-secret",
+        validation_alias="USER_ID_SECRET",
+    )
+    livekit_url: str = ""
+    livekit_api_key: str = ""
+    livekit_api_secret: str = ""
 
     @field_validator("cors_origins")
     @classmethod

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { connectToChat } from "./api";
 import { ChatMessage, ConnectionState, isChatServerFrame } from "./types";
 
-export function useChat(token: string, onSessionExpired: () => void) {
+export function useChat(serverId: string, token: string, onSessionExpired: () => void) {
   const socketRef = useRef<WebSocket | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [connectionState, setConnectionState] = useState<ConnectionState>("connecting");
@@ -11,7 +11,7 @@ export function useChat(token: string, onSessionExpired: () => void) {
 
   useEffect(() => {
     let active = true;
-    const socket = connectToChat();
+    const socket = connectToChat(serverId);
     socketRef.current = socket;
     socket.onopen = () => {
       if (active) socket.send(JSON.stringify({ token }));
@@ -53,6 +53,7 @@ export function useChat(token: string, onSessionExpired: () => void) {
       socketRef.current = null;
       setConnectionState("disconnected");
       if (event.code === 4401) onSessionExpired();
+      else if (event.code === 4403) setConnectionError("Your membership to this server has ended.");
     };
 
     return () => {
@@ -60,7 +61,7 @@ export function useChat(token: string, onSessionExpired: () => void) {
       socket.close();
       if (socketRef.current === socket) socketRef.current = null;
     };
-  }, [token, connectionAttempt, onSessionExpired]);
+  }, [serverId, token, connectionAttempt, onSessionExpired]);
 
   const sendMessage = useCallback((text: string): boolean => {
     const trimmedText = text.trim();
