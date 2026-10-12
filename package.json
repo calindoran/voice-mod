@@ -1,0 +1,21 @@
+{
+  "name": "voice-mod",
+  "private": true,
+  "workspaces": [
+    "apps/mobile"
+  ],
+  "scripts": {
+    "dev:mobile": "npm run start --workspace @voice-mod/mobile",
+    "dev:api": ".venv/bin/python -m uvicorn app.main:app --reload --app-dir apps/api --host 0.0.0.0",
+    "typecheck": "npm run typecheck --workspace @voice-mod/mobile",
+    "lint": "npm run lint --workspace @voice-mod/mobile"
+  },
+  "dependencies": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~57.0.2"
+  }
+}
